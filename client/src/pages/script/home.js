@@ -130,5 +130,46 @@ let cart = [];
             }
         }
 
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const totalPriceEl = document.getElementById('totalPrice');
+            const cartCount = document.getElementById('cartCount');
+        
+            cartItems.innerHTML = '';
+            let totalPrice = 0;
+        
+            cart.forEach((item, index) => {
+                totalPrice += item.price * item.quantity;
+                cartItems.innerHTML += `
+                    <li>
+                        <span>${item.name} - ₹${item.price} x ${item.quantity}</span>
+                        <button onclick="buyItem('${item.name}')">Buy</button>
+                        <button onclick="decreaseQuantity(${index})">➖</button>
+                        <button class="remove-btn" onclick="removeFromCart(${index})">❌</button>
+                    </li>`;
+            });
+        
+            totalPriceEl.textContent = totalPrice.toFixed(2);
+            cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+        }
+        
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+        
+        function decreaseQuantity(index) {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity--;
+            } else {
+                cart.splice(index, 1);
+            }
+            updateCart();
+        }
+        
+        
+        
+        
+
         
         displayProducts([].concat(...Object.values(allProducts)));
