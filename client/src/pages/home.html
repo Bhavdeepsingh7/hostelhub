@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hostel Hub</title>
+    <title>Hostel-Hub</title>
     <link rel="stylesheet" href="css/home.css">
-    <style>
-       
-    </style>
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">Hostel Hub</div>
+        <div class="logo">HostelHub</div>
         <div class="search-bar">
             <input type="text" id="searchInput" placeholder="Search..." onkeyup="searchProducts()">
         </div>
         <div class="nav-right">
-            <button class="btn">Login</button>
+            <button class="btn sell-btn" onclick="openSellForm()">Sell</button>
+            <button class="btn" onclick="location.href='login.html'">Login</button>
             <button class="btn">Sign Up</button>
             <div class="cart" onclick="toggleCart()">🛒 <span id="cartCount">0</span></div>
         </div>
@@ -35,9 +33,26 @@
         <h3>Your Cart</h3>
         <ul id="cartItems"></ul>
         <p>Total: ₹<span id="totalPrice">0.00</span></p>
-        <button onclick="toggleCart()">Close</button>
+        <button class="buy-all-btn" onclick="buyWholeCart()">Buy Whole Cart</button>
+        <button class="close-btn" onclick="toggleCart()">Close</button>
     </div>
 
-   <script src="script/home.js"></script>
+    
+    <div class="sell-form-container" id="sellFormContainer">
+        <h3>Sell Your Product</h3>
+        <input type="text" id="productName" placeholder="Product Name">
+        <input type="number" id="productPrice" placeholder="Price">
+        <select id="productCategory">
+            <option value="Snacks">Snacks</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Soft Drinks">Soft Drinks</option>
+            <option value="Accessories">Accessories</option>
+        </select>
+        <input type="text" id="productImage" placeholder="Image URL">
+        <button onclick="addProduct()">Add Product</button>
+        <button class="close-btn" onclick="closeSellForm()">Close</button>
+    </div>
+
+  <script src="script/home.js"></script>
 </body>
 </html>
